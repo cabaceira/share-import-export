@@ -30,13 +30,13 @@ class SurfRequest(urllib2.Request):
                  origin_req_host=None, unverifiable=False, method=None):
         urllib2.Request.__init__(self, url, data, headers, origin_req_host, unverifiable)
         self.http_method = method
-    
+
     def get_method(self):
         if self.http_method is not None:
             return self.http_method
         else:
             return urllib2.Request.get_method(self)
-    
+
     def set_method(self, method):
         self.http_method = method
 
@@ -51,7 +51,7 @@ class SurfRequestError(urllib2.HTTPError):
         self.callstack = ""
         self.server = ""
         self.time = ""
-        
+
         if ('Content-Type' in hdrs):
             self.respType = hdrs['Content-Type']
             try:
@@ -66,13 +66,13 @@ class SurfRequestError(urllib2.HTTPError):
                 self.callstack = self.respJSON['callstack']
                 self.server = self.respJSON['server']
                 self.time = self.respJSON['time']
-    
+
     def __str__(self):
         if self.respJSON is not None:
             return 'Spring Surf Error %s (%s): "%s"' % (self.code, self.msg, self.description)
         else:
             return 'Spring Surf Error %s (%s)\n\n%s' % (self.code, self.msg, self.respData)
-        
+
     def printCallStack(self):
         if isinstance(self.callstack, list) :
             for line in self.callstack:
@@ -154,7 +154,7 @@ class DashletResponse(XmlResponse):
         dashlet = {}
         dashlet['url'] = self.data.findtext('url')
         dashlet['regionId'] = self.data.findtext('region-id')
-        
+
         p = self.data.find('properties')
         if p is not None:
             props = p.getchildren()
@@ -178,7 +178,7 @@ class ShareRequest:
         self.timeout = timeout
 
     def execute(self, opener, resp_class=ShareResponse):
-        """Execute the request using the given opener and return the response, wrapped within a ShareResponse object, 
+        """Execute the request using the given opener and return the response, wrapped within a ShareResponse object,
         or an instance of the class specified.
 
         If a custom class is specified then this must implement an __init__ method which takes the response object from urllib.open() as an argument
@@ -218,9 +218,9 @@ class ShareClient:
         """Initialise the client"""
         self.cj = cookielib.CookieJar()
         headers = [
-                   ('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'), 
-                   ('Accept-Charset', 'ISO-8859-1,utf-8;q=0.7,*;q=0.7'), 
-                   ('Accept-Language', 'en-gb,en;q=0.5'), 
+                   ('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'),
+                   ('Accept-Charset', 'ISO-8859-1,utf-8;q=0.7,*;q=0.7'),
+                   ('Accept-Language', 'en-gb,en;q=0.5'),
                    ('User-Agent', SHARE_CLIENT_USER_AGENT)
         ]
         # Regular opener
@@ -237,7 +237,7 @@ class ShareClient:
         else:
             raise Exception('Bad multipart library %s' % (mplib))
         m_opener.addheaders = headers
-        
+
         self.url = url.rstrip('/')
         self.tenant = tenant
         self.opener = opener
@@ -294,11 +294,11 @@ class ShareClient:
         resp = self.doPost(path, dataStr, 'application/json; charset=UTF-8', method)
         jsonData = resp.read()
         resp.close()
-        
+
         if self.debug == 1:
             print jsonData
         return json.loads(jsonData)
-    
+
     def doMultipartUpload(self, path, params):
         """Perform a multipart form upload against Share"""
         reqbase = self.url if self.tenant is None else ("%s/%s" % (self.url, self.tenant))
@@ -347,7 +347,7 @@ class ShareClient:
     def doLogout(self):
         """Log the current user out of Share using the logout servlet"""
         try:
-            resp = self.doGet('page/dologout')
+            resp = self.doPost('page/dologout')
             resp.close()
         except SurfRequestError, e:
             if e.code == 405: # GET Method not allowed, must use POST for newer versions of Alfresco
@@ -358,7 +358,7 @@ class ShareClient:
                     if e.code == 401:
                         pass
         self._username = None
-    
+
     def getSitesContainerName(self):
         if self.sitesContainer is None:
             json = self._getDocumentList('')
@@ -378,17 +378,17 @@ class ShareClient:
                 print 'Setting config for dashlet %s' % (dashletId)
                 result['dashlet-results'][dashletId] = self.setDashletConfig(dashletId, dashlet['config'])
         return result
-    
+
     def setDashletConfig(self, dashletId, configData):
         """Update the configuration of a specific dashlet
-        
+
         dashletId is something like "page.component-3-2.site~PartnerES~dashboard" or "page.component-3-2.user~wabson~dashboard"
         configData is a dictionary object defining the values to update
         """
         return self.doJSONPost('service/modules/dashlet/config/%s' % (urllib.quote(unicode(dashletId))), json.dumps(configData))
-    
+
     # User functions
-    
+
     def setProfileImage(self, username, imgpath):
         """Upload and set a profile image for a Share user"""
         uparams = { 'filedata' : file(imgpath, 'rb'), 'siteid':'', 'containerid':'', 'destination':'', 'username':username, 'updateNodeRef':'', 'uploadDirectory':'', 'overwrite':'false', 'thumbnails':'', 'successCallback':'', 'successScope':'', 'failureCallback':'', 'failureScope':'', 'contentType':'cm:content', 'majorVersion':'false', 'description':'' }
@@ -409,9 +409,9 @@ class ShareClient:
     def updateUserDashboardConfig(self, user):
         """Update the a dashboard configuration for the current Share user"""
         return self.updateDashboardConfig(user['dashboardConfig'])
-    
+
     # Site functions
-    
+
     def getSiteInfo(self, siteId, getMetaData=False, getMemberships=False, getPages=False, getDashboardConfig=False):
         """Get information about a site"""
         siteData = self.doJSONGet('proxy/alfresco/api/sites/%s' % (urllib.quote(unicode(siteId))))
@@ -421,7 +421,7 @@ class ShareClient:
         if getMemberships:
             siteData['memberships'] = self.doJSONGet('proxy/alfresco/api/sites/%s/memberships' % (urllib.quote(unicode(siteId))))
         # Since there is no JSON API to GET the site dashboard configuration, we need to query the AVM
-        # sitestore directly on the repository tier. As the queries are proxied through the web tier, 
+        # sitestore directly on the repository tier. As the queries are proxied through the web tier,
         # this should still work even if the repository is running on a different server to Share.
         if getPages:
             try:
@@ -438,11 +438,11 @@ class ShareClient:
         if getDashboardConfig:
             siteData['dashboardConfig'] = self.getDashboardConfig('site', siteId)
         return siteData
-    
+
     def getDashboardConfig(self, dashboardType, dashboardId):
         """
         Get information on a site or user dashboard
-        
+
         dashboardType is either 'site' or 'user'
         dashboardId is the site or user ID
         """
@@ -488,12 +488,12 @@ class ShareClient:
             else:
                 raise e
         return dashboardConfig
-    
+
     def getSiteTags(self, siteId, componentId=""):
         """Get tagscope information on a site or site component"""
         tagData = self.doJSONGet(('proxy/alfresco/api/tagscopes/site/%s/%s/tags' % (urllib.quote(unicode(siteId)), urllib.quote(unicode(componentId)))).replace('//', '/'))
         return tagData
-    
+
     def getSiteTagInfo(self, siteId, componentId=""):
         """Get information on each tagged document in the site"""
         nodeInfo = {}
@@ -513,19 +513,19 @@ class ShareClient:
                         itemPath = nodeJson['item']['location']['path'].strip('/')
                     if itemPath is None:
                         raise Exception("Could not determine path for node %s" % (item['nodeRef']))
-                    nodeInfo[item['nodeRef']] = { 
-                                                 'type': item['type'], 
-                                                 'name': item['name'], 
-                                                 'container': item['container'], 
-                                                 'path': itemPath, 
+                    nodeInfo[item['nodeRef']] = {
+                                                 'type': item['type'],
+                                                 'name': item['name'],
+                                                 'container': item['container'],
+                                                 'path': itemPath,
                                                  'tags': item['tags']
                                                  }
         return nodeInfo.values()
-    
+
     def createSite(self, siteData):
         """Create a Share site"""
         return self.doJSONPost('service/modules/create-site', json.dumps(siteData))
-    
+
     def createRmSite(self, siteData):
         resp = self.doGet('service/utils/create-rmsite?shortname=%s' % (siteData['shortName']))
         resp.close()
@@ -533,14 +533,14 @@ class ShareClient:
         resp.close()
         print "Created RM site"
         self.updateSite(siteData)
-    
+
     def updateSite(self, siteData):
         """Update a Share site"""
         return self.doJSONPost('proxy/alfresco/api/sites/%s' % (urllib.quote(unicode(siteData['shortName']))), json.dumps(siteData), method="PUT")
-    
+
     def setSitePages(self, pageData):
         """Set the pages in a site
-        
+
         pageData should be a dict object with keys 'pages', 'siteId' and (in 4.0) 'themeId'"""
         return self.doJSONPost('service/components/site/customise-pages', json.dumps(pageData))
 
@@ -556,7 +556,7 @@ class ShareClient:
             # For 3.4 and under
             return self.doJSONPost('proxy/alfresco/api/sites/%s/memberships/%s' % (urllib.quote(unicode(siteName)), urllib.quote(unicode(authorityName))), json.dumps(memberData), method="PUT")
         except SurfRequestError, e:
-            if e.code == 404:
+            if (e.code == 404) or (e.code == 502):
                 # For 4.0+
                 return self.doJSONPost('proxy/alfresco/api/sites/%s/memberships' % (urllib.quote(unicode(siteName))), json.dumps(memberData), method="PUT")
             else:
@@ -591,10 +591,10 @@ class ShareClient:
                 else:
                     raise e
         return results
-    
+
     def deleteSite(self, site):
         """Remove a Share site
-        
+
         site can be a string value containing the siteName identifier or a dictionary object"""
         if type(site) == str:
             siteData = { 'shortName': site }
@@ -603,15 +603,15 @@ class ShareClient:
         # Site API does not remove web-tier components
         #return self.doJSONPost('proxy/alfresco/api/sites', json.dumps(siteData), method="DELETE")
         return self.doJSONPost('service/modules/delete-site', json.dumps(siteData))
-    
+
     def _setSpaceRuleset(self, nodeRef, rulesetDef):
         """Set up rules on a space"""
         return self.doJSONPost('proxy/alfresco/api/node/%s/ruleset/rules' % (nodeRef.replace('://', '/')), json.dumps(rulesetDef))
-    
+
     def _deleteSpaceRuleset(self, nodeRef, rulesetId):
         """Set up rules on a space"""
         return self.doJSONPost('proxy/alfresco/api/node/%s/ruleset/rules/%s' % (nodeRef.replace('://', '/'), rulesetId), method="DELETE")
-    
+
     def importSiteContent(self, siteId, containerId, f, delete=True):
         """Upload a content package into a collaboration site and extract it"""
         # Get the site metadata
@@ -634,7 +634,7 @@ class ShareClient:
             try:
                 createData = self.doJSONPost('proxy/alfresco/api/type/%s/formprocessor' % (urllib.quote(unicode(folderType))), json.dumps(folderData))
             except SurfRequestError, e:
-                if e.code == 404:
+                if (e.code == 404) or (e.code == 502):
                     folderType = 'cm:folder'
                     createData = self.doJSONPost('proxy/alfresco/api/type/%s/formprocessor' % (urllib.quote(unicode(folderType))), json.dumps(folderData))
                 else:
@@ -650,7 +650,7 @@ class ShareClient:
             folderData = { 'alf_destination': siteNodeRef, 'prop_cm_name': tempContainerName, 'prop_cm_title': tempContainerName, 'prop_cm_description': '' }
             createData = self.doJSONPost('proxy/alfresco/api/type/%s/formprocessor' % (urllib.quote(unicode(folderType))), json.dumps(folderData))
             tempContainerData = { 'nodeRef': createData['persistedObject'], 'name' : tempContainerName }
-            
+
         # First apply a ruleset to the temp folder
         # This will perform the import automatically when we upload the ACP file
         rulesetDef = {
@@ -684,7 +684,7 @@ class ShareClient:
             "ruleType":["update"]
         }
         rulesData = self._setSpaceRuleset(tempContainerData['nodeRef'], rulesetDef)
-        
+
         # Now upload the file
         if f is not None:
             uparams = { 'filedata' : f, 'siteid':siteId, 'containerid':tempContainerName, 'destination':'', 'username':'', 'updateNodeRef':'', 'uploadDirectory':'/', 'overwrite':'false', 'thumbnails':'', 'successCallback':'', 'successScope':'', 'failureCallback':'', 'failureScope':'', 'contentType':'cm:content', 'majorVersion':'false', 'description':'' }
@@ -699,7 +699,7 @@ class ShareClient:
                     # Assume mimetype was not found, probably pre-4.0 instance
                     # Instead, we just need to update another property to get the ruleset to fire
                     self.updateProperties(nodeRef, {'prop_cm_title': f.name})
-                    
+
                 if delete == True:
                     # Remove the rule definition
                     self._deleteSpaceRuleset(tempContainerData['nodeRef'], rulesData['data']['id'])
@@ -709,12 +709,12 @@ class ShareClient:
                     self.deleteFolder(tempContainerData['nodeRef'])
             else:
                 raise Exception("Could not upload file (got response %s)" % (json.dumps(udata)))
-    
+
     def importSiteTags(self, siteId, nodeInfo):
         """Import tags into a site component"""
         tagInfo = {}
         persistedNodes = []
-        
+
         """Retrieve a list of all the existing tags in the system
         Items will be something like
         {
@@ -728,7 +728,7 @@ class ShareClient:
             "displayPath": "/categories/Tags",
             "nodeRef": "workspace://SpacesStore/954968a8-6d9e-41cc-a3ab-b1edfe91ea44",
             "selectable": true
-        
+
         },"""
         tagData = self.doJSONGet('proxy/alfresco/api/forms/picker/category/alfresco/category/root/children?selectableType=cm:category&size=1000&aspect=cm:taggable')
         tagItems = tagData['data']['items']
@@ -767,19 +767,19 @@ class ShareClient:
                         e.printCallStack()
                     else:
                         raise
-            
+
         return persistedNodes
-    
+
     def deleteFile(self, f):
         return self.doJSONPost('proxy/alfresco/slingshot/doclib/action/file/node/%s' % (f.replace('://', '/')), method="DELETE")
-    
+
     def deleteFolder(self, f):
         return self.doJSONPost('proxy/alfresco/slingshot/doclib/action/folder/node/%s' % (f.replace('://', '/')), method="DELETE")
-    
+
     def updateProperties(self, nodeRef, properties):
         """Update the metadata properties of a repository item"""
         return self.doJSONPost('proxy/alfresco/api/node/%s/formprocessor' % (urllib.quote(unicode(nodeRef).replace('://', '/'))), properties)
-    
+
     def addUserGroups(self, user, groups):
         if isinstance(user, (dict)):
             userData = user
@@ -787,7 +787,7 @@ class ShareClient:
             userData = self.doJSONGet('proxy/alfresco/api/people/%s?groups=true' % (urllib.quote(unicode(user))))
         else:
             raise Exception('Bad user data type %s' % (type(user)))
-        
+
         userGroups = []
         addGroups = []
         # Get the groups the user is a member of - since we can't add users to a group twice
@@ -805,13 +805,13 @@ class ShareClient:
                 groupName = group
             else:
                 raise Exception('Bad group type %s' % (type(group)))
-            
+
             if groupName not in userGroups:
                 addGroups.append(groupName)
-        
+
         putData = { 'addGroups': addGroups, 'disableAccount': False, 'email': userData['email'], 'firstName': userData['firstName'], 'lastName': userData['lastName'], 'quota': userData['quota'], 'removeGroups': [] }
         return self.doJSONPost('proxy/alfresco/api/people/%s' % (urllib.quote(unicode(userData['userName']))), json.dumps(putData), method="PUT")
-    
+
     def importRmSiteContent(self, siteId, containerId, f):
         """Upload a content package into an RM site and extract it"""
         # Forces creation of the doclib container
@@ -822,7 +822,7 @@ class ShareClient:
         # Find the Records Management Administrator groups(s)
         raGroups = self.doJSONGet('proxy/alfresco/api/groups?zone=APP.DEFAULT&shortNameFilter=**Records%20Management%20Administrator')['data']
         self.addUserGroups(self._username, raGroups)
-        
+
         # Get the site metadata
         siteData = self.doJSONGet('proxy/alfresco/api/sites/%s' % (urllib.quote(unicode(siteId))))
         siteNodeRef = '/'.join(siteData['node'].split('/')[5:]).replace('/', '://', 1)
@@ -860,7 +860,7 @@ class ShareClient:
                 tempContainerData = child
         if containerData is None:
             raise Exception("Container '%s' does not exist" % (containerId))
-            
+
         if tempContainerData is None:
             # Create export container if it doesn't exist
             folderData = { 'alf_destination': siteNodeRef, 'prop_cm_name': tempContainerName, 'prop_cm_title': tempContainerName, 'prop_cm_description': '' }
@@ -879,7 +879,7 @@ class ShareClient:
             acp = self._getDocumentListItem(docList, '%s.acp' % (acpFile))
             if acp is not None:
                 self.deleteFile(acp['nodeRef'])
-        
+
         # Execute the export action and run it directly
         actionDef = {
             "actionedUponNode":containerData['nodeRef'],
@@ -904,16 +904,16 @@ class ShareClient:
         """
         Response is something like
         {
-            "data" : 
+            "data" :
             {
                 "status" : "success",
                 "actionedUponNode" : "workspace://SpacesStore/2e78a675-0f48-4e3d-b03f-0ae724eb5f9f",
-                "action" : 
+                "action" :
                 {"actionDefinitionName": ... }
             }
         }
         """
-        
+
     def exportAllSiteContent(self, siteId, containers=None, includePaths=None, tempContainerName='export', async=False):
         """Export an ACP file for each component in the site and store them in the repository"""
         # TODO Can we not just call proxy/alfresco/slingshot/doclib/treenode/node/alfresco/company/home/Sites/sitename ?
@@ -938,7 +938,7 @@ class ShareClient:
                     self.exportSiteContent(siteId, child['name'], includePaths, tempContainerName, async)
                     results['exportFiles'].append(child['name'])
         return results
-    
+
     def _getNodeInfoByPath(self, siteId, componentId, path):
         """Return information on the specified node"""
         try:
@@ -953,10 +953,10 @@ class ShareClient:
                 return self.doJSONGet('proxy/alfresco/slingshot/doclib/doclist/all/node/alfresco/company/home/%s/%s/%s/%s' % (urllib2.quote(self.getSitesContainerName()), urllib2.quote(siteId), urllib2.quote(componentId), urllib2.quote(path.encode('utf-8'))))
             else:
                 raise
-    
+
     def _getDocumentList(self, space):
         """Return a list of documents in the space identified by parameter space
-        
+
         Response will be something like
         {
            "totalRecords": 9,
@@ -1049,29 +1049,29 @@ class ShareClient:
            ]
         }
         """
-        
+
         # Assume space is a path for now e.g. 'Sites/test/documentLibrary'
         return self.doJSONGet('proxy/alfresco/slingshot/doclib/doclist/all/node/alfresco/company/home/%s' % (urllib.quote(unicode(space))))
-    
+
     def _getDocumentListItem(self, list, itemName):
         for item in list['items']:
             if item['fileName'] == itemName:
                 return item
         return None
-    
+
     def _documentListHasItem(self, list, itemName):
         return self._getDocumentListItem(list, itemName) is not None
 
     def updateContentItem(self, nodeRef, content, majorVersion=False, description=''):
         return self.doMultipartUpload("proxy/alfresco/api/upload", {
-            'filedata': content, 
-            'siteid': '', 
-            'containerid': '', 
+            'filedata': content,
+            'siteid': '',
+            'containerid': '',
             'destination': '',
-            'username': '', 
-            'updateNodeRef': nodeRef, 
-            'uploadDirectory':'', 
-            'overwrite': 'false', 
+            'username': '',
+            'updateNodeRef': nodeRef,
+            'uploadDirectory':'',
+            'overwrite': 'false',
             'thumbnails': '',
             'successCallback': '',
             'successScope': '',
@@ -1081,27 +1081,27 @@ class ShareClient:
             'majorVersion': str(majorVersion).lower(),
             'description': description
         })
-    
+
     # Admin functions
-    
+
     def getAllUsers(self, getFullDetails=False, getDashboardConfig=False, getPreferences=False, getGroups=False):
         """Fetch information on all the person objects in the repository
-        
+
         getFullDetails adds 'capabilities' object to the user object with booleans
         isMutable, isGuest and isAdmin
-        
+
         getGroups adds 'groups' and 'mutability' objects. Implies getFullDetails=True.
         """
         pdata = self.doJSONGet('proxy/alfresco/api/people')
         self._extendUserInfo(pdata['people'], getFullDetails, getDashboardConfig, getPreferences, getGroups)
         return pdata
-        
+
     def getCloudUsers(self, getFullDetails=False, getDashboardConfig=False, getPreferences=False, getGroups=False):
         """Fetch information on all the person objects in the current tenant
-        
+
         getFullDetails adds 'capabilities' object to the user object with booleans
         isMutable, isGuest and isAdmin
-        
+
         getGroups adds 'groups' and 'mutability' objects. Implies getFullDetails=True.
         """
         pdata = { 'people': [] }
@@ -1115,13 +1115,13 @@ class ShareClient:
             if skipCount >= newData['paging']['totalItems']:
                 break
         return pdata
-        
+
     def _extendUserInfo(self, users, getFullDetails=False, getDashboardConfig=False, getPreferences=False, getGroups=False):
         """Fetch information on all the person objects in the repository
-        
+
         getFullDetails adds 'capabilities' object to the user object with booleans
         isMutable, isGuest and isAdmin
-        
+
         getGroups adds 'groups' and 'mutability' objects. Implies getFullDetails=True.
         """
         if getFullDetails or getDashboardConfig or getPreferences:
@@ -1142,7 +1142,7 @@ class ShareClient:
                         p['dashboardConfig'] = dc
                 if getPreferences:
                     p['preferences'] = self.doJSONGet('proxy/alfresco/api/people/%s/preferences' % (urllib.quote(unicode(p['userName']))))
-        
+
     def createUser(self, user, defaultPassword=None, defaultEmail=None):
         """Create a person object in the repository"""
         # Work around bug where create/update user calls do not accept null values
@@ -1176,10 +1176,10 @@ class ShareClient:
                 # Add user groups if they exist
                 if 'groups' in u and len(u['groups']) > 0:
                     self.addUserGroups(u['userName'], u['groups'])
-    
+
     def setUserPreferences(self, username, prefs):
         return self.doJSONPost('proxy/alfresco/api/people/%s/preferences' % (urllib.quote(unicode(username))), json.dumps(prefs))
-    
+
     def deleteUser(self, user):
         """Delete an existing user from Share"""
         return self.doJSONPost("%s/%s" % ('proxy/alfresco/api/people', urllib.quote(unicode(user))), data="", method="DELETE")
@@ -1195,7 +1195,7 @@ class ShareClient:
                     print "User '%s' did not exist, skipping" % (u['userName'])
                 else:
                     raise e
-    
+
     def getAllGroups(self, skipGroups=[], getSiteGroups=False, getSystemGeneratedGroups=False, zone='APP.DEFAULT'):
         """Fetch information on all the group objects in the repository"""
         gdata = self.doJSONGet('proxy/alfresco/api/rootgroups?zone=%s' % (urllib.quote(zone)))
@@ -1214,7 +1214,7 @@ class ShareClient:
         for g in groups:
             g['children'] = self.doJSONGet('proxy/alfresco/api/groups/%s/children' % (urllib.quote(unicode(g['shortName']))))['data']
         return { 'groups': groups }
-    
+
     def getGroup(self, name):
         """Return a single group object from the repository, or None if it does not exist"""
         try:
@@ -1225,7 +1225,7 @@ class ShareClient:
                 return None
             else:
                 raise e
-    
+
     def createGroup(self, name, displayName, parent=None):
         """Create a single group authority"""
         if parent is None:
@@ -1233,7 +1233,7 @@ class ShareClient:
         else:
             self.doJSONPost('proxy/alfresco/api/groups/%s/children/GROUP_%s' % (urllib.quote(unicode(parent)), urllib.quote(unicode(name))))
             self.doJSONPost('proxy/alfresco/api/groups/%s' % (urllib.quote(unicode(name))), {'displayName':displayName}, method='PUT')
-    
+
     def createGroups(self, group, parent=None):
         """Create a group authority with nested sub-groups"""
         # Only create the group if it doesn't already exist
@@ -1247,7 +1247,7 @@ class ShareClient:
             for child in group['children']:
                 if child['authorityType'] != 'USER':
                     self.createGroups(child, childBase)
-    
+
     def getCategories(self, path):
         """Fetch a list of child categories at the given location, in a recursive structure"""
         categories = self.doJSONGet('proxy/alfresco/slingshot/doclib/categorynode/node/%s' % (urllib.quote(path.encode('utf-8'))))['items']
@@ -1255,11 +1255,11 @@ class ShareClient:
         for c in categories:
             c['children'] = self.getCategories('%s/%s' % (path, c['name']))
         return categories
-    
+
     def getAllCategories(self):
         """Fetch all the categories in the repository, in a tree structure"""
         return self.getCategories('alfresco/category/root')
-    
+
     def createCategories(self, category, parent=None):
         """Create a tree of Categories"""
         newCategory = self.createCategory(category, parent)
@@ -1269,15 +1269,15 @@ class ShareClient:
                 if 'children' in child:
                     for categoryChild in child['children']:
                         self.createCategories(categoryChild, newChildCategory['persistedObject'])
-        
+
     def createCategory(self, category, parentNodeRef=None):
         """Create a single category"""
         if parentNodeRef is None:
             newCategory = self.doJSONPost('proxy/alfresco/api/category', {'name':category['name'].encode('utf-8')})
         else:
-            newCategory = self.doJSONPost('proxy/alfresco/api/category/%s' % (parentNodeRef.replace('://', '/')) , {'name':category['name'].encode('utf-8')})               
+            newCategory = self.doJSONPost('proxy/alfresco/api/category/%s' % (parentNodeRef.replace('://', '/')) , {'name':category['name'].encode('utf-8')})
         return newCategory
-    
+
     def getAllTags(self):
         """Fetch all the tags used in the repository"""
         resp = self.doGet('proxy/alfresco/api/tags/workspace/SpacesStore')
