@@ -1,0 +1,8 @@
+Log in (admin)
+Create site 'consulting-team'
+Set site configuration
+Set dashboard configuration
+Setting config for dashlet page.component-1-1.site~consulting-team~dashboard
+Add site members
+Import documentLibrary content
+Log out (admin)

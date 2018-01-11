@@ -1,0 +1,800 @@
+{
+    "dashboardConfig": {
+        "dashboardPage": "site/consulting-team/dashboard", 
+        "dashlets": [
+            {
+                "regionId": "component-1-1", 
+                "url": "/components/dashlets/site-links"
+            }, 
+            {
+                "regionId": "component-1-2", 
+                "url": "/components/dashlets/top-site-contributor-report"
+            }, 
+            {
+                "config": {
+                    "height": "551", 
+                    "wikipage": "Alfresco_Consulting_Dashboard"
+                }, 
+                "regionId": "component-2-1", 
+                "url": "/components/dashlets/wiki"
+            }, 
+            {
+                "config": {
+                    "height": "162", 
+                    "wikipage": "Main_Page"
+                }, 
+                "regionId": "component-2-2", 
+                "url": "/components/dashlets/wiki"
+            }, 
+            {
+                "config": {
+                    "height": "285"
+                }, 
+                "regionId": "component-3-1", 
+                "url": "/components/dashlets/activityfeed"
+            }, 
+            {
+                "config": {
+                    "height": "316"
+                }, 
+                "regionId": "component-3-2", 
+                "url": "/components/dashlets/docsummary"
+            }, 
+            {
+                "regionId": "component-3-3", 
+                "url": "/components/dashlets/imagesummary"
+            }
+        ], 
+        "templateId": "dashboard-3-columns"
+    }, 
+    "description": "Alfresco Consulting - Main Departmental Site.", 
+    "isPublic": true, 
+    "memberships": [
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/584a86c6-486f-453e-97ee-2025fd72c448/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/584a86c6-486f-453e-97ee-2025fd72c448", 
+                "firstName": "Luis", 
+                "fullName": "lcabaceira", 
+                "jobtitle": "Technical Consultant", 
+                "lastName": "Cabaceira", 
+                "url": "/alfresco/s/api/people/lcabaceira", 
+                "userName": "lcabaceira"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/lcabaceira"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/48b9671c-6edd-4ec4-9ee5-36ee754f5468/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/48b9671c-6edd-4ec4-9ee5-36ee754f5468", 
+                "firstName": "Nathan", 
+                "fullName": "nmcminn", 
+                "jobtitle": "Technical Consultant", 
+                "lastName": "McMinn", 
+                "url": "/alfresco/s/api/people/nmcminn", 
+                "userName": "nmcminn"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/nmcminn"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/069f1a6f-baaf-4b9d-8839-5fae340f00df/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/069f1a6f-baaf-4b9d-8839-5fae340f00df", 
+                "firstName": "Jos\u00e9 Luis", 
+                "fullName": "jcarrasco", 
+                "jobtitle": "Technical consultant", 
+                "lastName": "Carrasco Gavil\u00e0n", 
+                "organization": "", 
+                "url": "/alfresco/s/api/people/jcarrasco", 
+                "userName": "jcarrasco", 
+                "userStatus": "", 
+                "userStatusTime": {
+                    "iso8601": "2012-08-29T18:49:55.757+01:00"
+                }
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteCollaborator", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/jcarrasco"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/5e3727ce-eb1d-48f9-a7b7-1b3d951685aa/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/5e3727ce-eb1d-48f9-a7b7-1b3d951685aa", 
+                "firstName": "Garrett", 
+                "fullName": "ghentschel", 
+                "jobtitle": "Manager, US Premier Services", 
+                "lastName": "Hentschel", 
+                "url": "/alfresco/s/api/people/ghentschel", 
+                "userName": "ghentschel"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/ghentschel"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/2e9378a2-4219-4d55-81b9-c5712b27f198/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/2e9378a2-4219-4d55-81b9-c5712b27f198", 
+                "firstName": "Andrea", 
+                "fullName": "alagan", 
+                "jobtitle": "", 
+                "lastName": "Lagan", 
+                "organization": "", 
+                "url": "/alfresco/s/api/people/alagan", 
+                "userName": "alagan"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/alagan"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/978a4606-1a70-466d-8835-b31f172e22d5/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/978a4606-1a70-466d-8835-b31f172e22d5", 
+                "firstName": "Jeff", 
+                "fullName": "jnott", 
+                "jobtitle": "Account Director - UK&I Public Sector", 
+                "lastName": "Nott", 
+                "url": "/alfresco/s/api/people/jnott", 
+                "userName": "jnott"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteContributor", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/jnott"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/c2dd5997-505a-4bd3-9063-5b0b342c1bba/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/c2dd5997-505a-4bd3-9063-5b0b342c1bba", 
+                "firstName": "Harry", 
+                "fullName": "hdedrickson", 
+                "lastName": "Dedrickson", 
+                "url": "/alfresco/s/api/people/hdedrickson", 
+                "userName": "hdedrickson"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/hdedrickson"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "Emily", 
+                "fullName": "egalli", 
+                "lastName": "Galli", 
+                "url": "/alfresco/s/api/people/egalli", 
+                "userName": "egalli"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteCollaborator", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/egalli"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "Luigi", 
+                "fullName": "lmule", 
+                "jobtitle": "Channel & Alliances Manager, Northern Europe", 
+                "lastName": "Mule", 
+                "organization": "", 
+                "url": "/alfresco/s/api/people/lmule", 
+                "userName": "lmule"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/lmule"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "Natalie", 
+                "fullName": "narkind", 
+                "lastName": "Arkind", 
+                "url": "/alfresco/s/api/people/narkind", 
+                "userName": "narkind"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/narkind"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/965c250f-56fe-4f49-afae-1168e3424532/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/965c250f-56fe-4f49-afae-1168e3424532", 
+                "firstName": "Stephen", 
+                "fullName": "spagana", 
+                "jobtitle": "Engagement Manager", 
+                "lastName": "Pagana", 
+                "organization": "", 
+                "url": "/alfresco/s/api/people/spagana", 
+                "userName": "spagana"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/spagana"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/aad9626b-928e-428c-bb03-f7da5a1297eb/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/aad9626b-928e-428c-bb03-f7da5a1297eb", 
+                "firstName": "Mehdi", 
+                "fullName": "mbelmekki", 
+                "jobtitle": "Consulting Engagement Manager", 
+                "lastName": "Belmekki", 
+                "url": "/alfresco/s/api/people/mbelmekki", 
+                "userName": "mbelmekki"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/mbelmekki"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/b08a1528-9f65-479c-916f-f5820e24b0d4/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/b08a1528-9f65-479c-916f-f5820e24b0d4", 
+                "firstName": "Doug", 
+                "fullName": "dmadgic", 
+                "jobtitle": "", 
+                "lastName": "Madgic", 
+                "url": "/alfresco/s/api/people/dmadgic", 
+                "userName": "dmadgic"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/dmadgic"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/11035bd6-4c3b-4cba-b87e-bcedde0b2b5f/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/11035bd6-4c3b-4cba-b87e-bcedde0b2b5f", 
+                "firstName": "Doug", 
+                "fullName": "dbaker", 
+                "jobtitle": "Senior Solutions Engineer", 
+                "lastName": "Baker", 
+                "organization": "", 
+                "url": "/alfresco/s/api/people/dbaker", 
+                "userName": "dbaker"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/dbaker"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/671066e6-342f-4245-b018-ff8db176c7fe/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/671066e6-342f-4245-b018-ff8db176c7fe", 
+                "firstName": "Martin", 
+                "fullName": "mkappel", 
+                "jobtitle": "Senior Channel Solution Engineer", 
+                "lastName": "Kappel", 
+                "organization": "", 
+                "url": "/alfresco/s/api/people/mkappel", 
+                "userName": "mkappel"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/mkappel"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "Alex", 
+                "fullName": "amahabir", 
+                "lastName": "Mahabir", 
+                "url": "/alfresco/s/api/people/amahabir", 
+                "userName": "amahabir"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/amahabir"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "James", 
+                "fullName": "jdickson", 
+                "lastName": "Dickson", 
+                "url": "/alfresco/s/api/people/jdickson", 
+                "userName": "jdickson"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/jdickson"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "Jose", 
+                "fullName": "jmachado", 
+                "lastName": "Machado", 
+                "url": "/alfresco/s/api/people/jmachado", 
+                "userName": "jmachado"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/jmachado"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/7d5bc8e3-6a64-4076-8742-af54aab5068a/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/7d5bc8e3-6a64-4076-8742-af54aab5068a", 
+                "firstName": "Dario", 
+                "fullName": "dsamarzija", 
+                "jobtitle": "", 
+                "lastName": "Samarzija", 
+                "url": "/alfresco/s/api/people/dsamarzija", 
+                "userName": "dsamarzija"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/dsamarzija"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/6f09a68a-2777-48d9-9e6c-45308a129989/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/6f09a68a-2777-48d9-9e6c-45308a129989", 
+                "firstName": "Monique", 
+                "fullName": "mperrodin", 
+                "jobtitle": "Administrator, Customer Success/PS Ops", 
+                "lastName": "Perrodin", 
+                "organization": "", 
+                "url": "/alfresco/s/api/people/mperrodin", 
+                "userName": "mperrodin"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/mperrodin"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": " Binyam", 
+                "fullName": "btaddesse", 
+                "lastName": "Taddesse", 
+                "url": "/alfresco/s/api/people/btaddesse", 
+                "userName": "btaddesse"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteCollaborator", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/btaddesse"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/3e26c4b9-63f8-4cb5-a859-3e51fddfd8c0/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/3e26c4b9-63f8-4cb5-a859-3e51fddfd8c0", 
+                "firstName": "Levin", 
+                "fullName": "lulrich", 
+                "jobtitle": "Manager, EMEA Premier Services", 
+                "lastName": "Ulrich", 
+                "organization": "", 
+                "url": "/alfresco/s/api/people/lulrich", 
+                "userName": "lulrich"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/lulrich"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/552844cd-3925-4606-a76e-0932b5d4bf56/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/552844cd-3925-4606-a76e-0932b5d4bf56", 
+                "firstName": "Paul", 
+                "fullName": "proth", 
+                "jobtitle": "VP, BPM", 
+                "lastName": "Roth", 
+                "url": "/alfresco/s/api/people/proth", 
+                "userName": "proth"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/proth"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/ebe32675-b46e-47ba-9c16-01e1363d0ed2/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/ebe32675-b46e-47ba-9c16-01e1363d0ed2", 
+                "firstName": "Tom", 
+                "fullName": "twix", 
+                "jobtitle": "Customer Success Operations", 
+                "lastName": "Wix", 
+                "organization": "Alfresco Software Limited", 
+                "url": "/alfresco/s/api/people/twix", 
+                "userName": "twix"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteContributor", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/twix"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/79394aeb-dfb3-4627-aa0c-1aa7d8f779e1/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/79394aeb-dfb3-4627-aa0c-1aa7d8f779e1", 
+                "firstName": "Kazuyuki", 
+                "fullName": "kkono", 
+                "jobtitle": "Senior Technical Support Engineer", 
+                "lastName": "Kono", 
+                "url": "/alfresco/s/api/people/kkono", 
+                "userName": "kkono"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/kkono"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "Doug", 
+                "fullName": "djohnson", 
+                "lastName": "Johnson", 
+                "url": "/alfresco/s/api/people/djohnson", 
+                "userName": "djohnson"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/djohnson"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/27041f5c-e8ce-44db-a1a2-47bc1c4240c0/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/27041f5c-e8ce-44db-a1a2-47bc1c4240c0", 
+                "firstName": "Rui", 
+                "fullName": "rfernandes", 
+                "jobtitle": "Principal Solutions Engineer", 
+                "lastName": "Fernandes", 
+                "url": "/alfresco/s/api/people/rfernandes", 
+                "userName": "rfernandes", 
+                "userStatus": "", 
+                "userStatusTime": {
+                    "iso8601": "2014-12-15T14:09:41.005Z"
+                }
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/rfernandes"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "Kamil", 
+                "fullName": "kchaudhary", 
+                "lastName": "Chaudhary", 
+                "url": "/alfresco/s/api/people/kchaudhary", 
+                "userName": "kchaudhary"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteCollaborator", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/kchaudhary"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/217ac9ce-7883-4f60-bdfd-e35d33446c03/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/217ac9ce-7883-4f60-bdfd-e35d33446c03", 
+                "firstName": "Brian", 
+                "fullName": "blong", 
+                "jobtitle": "Technical Consultant", 
+                "lastName": "Long", 
+                "url": "/alfresco/s/api/people/blong", 
+                "userName": "blong"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/blong"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/1664095b-7d37-4483-8d39-693d9827b5ba/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/1664095b-7d37-4483-8d39-693d9827b5ba", 
+                "firstName": "Trevor", 
+                "fullName": "thines", 
+                "jobtitle": "", 
+                "lastName": "Hines", 
+                "url": "/alfresco/s/api/people/thines", 
+                "userName": "thines"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/thines"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "Gary", 
+                "fullName": "gkorman", 
+                "lastName": "Korman", 
+                "url": "/alfresco/s/api/people/gkorman", 
+                "userName": "gkorman"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteCollaborator", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/gkorman"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/69b1d3d7-db2e-447c-8ec0-c04bb66f352e/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/69b1d3d7-db2e-447c-8ec0-c04bb66f352e", 
+                "firstName": "John", 
+                "fullName": "jpowell", 
+                "jobtitle": "CEO", 
+                "lastName": "Powell", 
+                "organization": "Alfresco Software Ltd", 
+                "url": "/alfresco/s/api/people/jpowell", 
+                "userName": "jpowell"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/jpowell"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "Joe", 
+                "fullName": "jwiacek", 
+                "lastName": "Wiacek", 
+                "url": "/alfresco/s/api/people/jwiacek", 
+                "userName": "jwiacek"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/jwiacek"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/f16dff68-ac96-45fe-b542-dcffb78c012d/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/f16dff68-ac96-45fe-b542-dcffb78c012d", 
+                "firstName": "Richard", 
+                "fullName": "rmcknight", 
+                "jobtitle": "Solution Architect", 
+                "lastName": "Mcknight", 
+                "url": "/alfresco/s/api/people/rmcknight", 
+                "userName": "rmcknight"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/rmcknight"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "Andy", 
+                "fullName": "awadsworth", 
+                "lastName": "Wadsworth", 
+                "url": "/alfresco/s/api/people/awadsworth", 
+                "userName": "awadsworth"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/awadsworth"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/7237d54a-a119-4b65-a4f4-0e854016973f/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/7237d54a-a119-4b65-a4f4-0e854016973f", 
+                "firstName": "Alex", 
+                "fullName": "astrachan", 
+                "jobtitle": "Team lead, Expert Support", 
+                "lastName": "Strachan", 
+                "url": "/alfresco/s/api/people/astrachan", 
+                "userName": "astrachan"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/astrachan"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/c6dba16d-af25-4db1-9ed8-c1e9d010c601/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/c6dba16d-af25-4db1-9ed8-c1e9d010c601", 
+                "firstName": "Dustin", 
+                "fullName": "droberts", 
+                "jobtitle": "Solutions Engineer", 
+                "lastName": "Roberts", 
+                "organization": "", 
+                "url": "/alfresco/s/api/people/droberts", 
+                "userName": "droberts"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/droberts"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/cb82c8c4-e70c-4973-b7dc-87e60065567b/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/cb82c8c4-e70c-4973-b7dc-87e60065567b", 
+                "firstName": "Shankar", 
+                "fullName": "siyer", 
+                "jobtitle": "Solutions Consultant", 
+                "lastName": "Iyer", 
+                "organization": "", 
+                "url": "/alfresco/s/api/people/siyer", 
+                "userName": "siyer"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/siyer"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/af521d03-aa38-440a-9924-d59d1db457e5/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/af521d03-aa38-440a-9924-d59d1db457e5", 
+                "firstName": "Mark", 
+                "fullName": "mhowarth", 
+                "jobtitle": "Product Manager, Platform", 
+                "lastName": "Howarth", 
+                "url": "/alfresco/s/api/people/mhowarth", 
+                "userName": "mhowarth"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/mhowarth"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/f5b2ec68-3f62-4063-a0d9-96eac5321479/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/f5b2ec68-3f62-4063-a0d9-96eac5321479", 
+                "firstName": "Christian", 
+                "fullName": "cfinzel", 
+                "jobtitle": "", 
+                "lastName": "Finzel", 
+                "organization": "", 
+                "url": "/alfresco/s/api/people/cfinzel", 
+                "userName": "cfinzel"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/cfinzel"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "avatar": "api/node/workspace/SpacesStore/2899d886-47a5-4fd1-ad29-044bd67a913d/content/thumbnails/avatar", 
+                "avatarNode": "workspace://SpacesStore/2899d886-47a5-4fd1-ad29-044bd67a913d", 
+                "firstName": "Darren", 
+                "fullName": "ddevine", 
+                "jobtitle": "Senior Consultant", 
+                "lastName": "Devine", 
+                "url": "/alfresco/s/api/people/ddevine", 
+                "userName": "ddevine"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteManager", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/ddevine"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "George", 
+                "fullName": "gkordopatis", 
+                "lastName": "Kordopatis", 
+                "url": "/alfresco/s/api/people/gkordopatis", 
+                "userName": "gkordopatis"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/gkordopatis"
+        }, 
+        {
+            "authority": {
+                "authorityType": "USER", 
+                "firstName": "Yesim", 
+                "fullName": "yerbay", 
+                "lastName": "Erbay", 
+                "url": "/alfresco/s/api/people/yerbay", 
+                "userName": "yerbay"
+            }, 
+            "isMemberOfGroup": false, 
+            "role": "SiteConsumer", 
+            "url": "/alfresco/s/api/sites/consulting-team/memberships/yerbay"
+        }
+    ], 
+    "metadata": {
+        "aspects": [
+            "{http://www.alfresco.org/model/content/1.0}tagscope", 
+            "{http://www.alfresco.org/model/system/1.0}unmovable", 
+            "{http://www.alfresco.org/model/content/1.0}titled", 
+            "{http://www.alfresco.org/model/content/1.0}auditable", 
+            "{http://www.alfresco.org/model/system/1.0}referenceable", 
+            "{http://www.alfresco.org/model/system/1.0}localized", 
+            "{http://www.alfresco.org/model/system/1.0}undeletable"
+        ], 
+        "mimetype": "application/octet-stream", 
+        "nodeRef": "workspace://SpacesStore/7af4c955-d171-4a86-9e34-ef063b48f61c", 
+        "properties": {
+            "{http://www.alfresco.org/model/content/1.0}created": "2012-04-26T11:50:14.537Z", 
+            "{http://www.alfresco.org/model/content/1.0}creator": "nmcminn", 
+            "{http://www.alfresco.org/model/content/1.0}description": "Alfresco Consulting - Main Departmental Site.", 
+            "{http://www.alfresco.org/model/content/1.0}modified": "2018-01-11T11:50:30.957Z", 
+            "{http://www.alfresco.org/model/content/1.0}modifier": "lcabaceira", 
+            "{http://www.alfresco.org/model/content/1.0}name": "consulting-team", 
+            "{http://www.alfresco.org/model/content/1.0}tagScopeCache": "contentUrl=store://2017/9/11/15/10/10e2011a-3a44-4315-b045-e741f343480b.bin|mimetype=text/plain|size=87|encoding=UTF-8|locale=en_US_|id=3074504", 
+            "{http://www.alfresco.org/model/content/1.0}tagScopeSummary": [
+                "accelerator=3", 
+                "delivery=2", 
+                "template=1", 
+                "sow=1", 
+                "templates=1", 
+                "statement of work=1", 
+                "deliverable=1"
+            ], 
+            "{http://www.alfresco.org/model/content/1.0}title": "Alfresco Consulting", 
+            "{http://www.alfresco.org/model/site/1.0}sitePreset": "site-dashboard", 
+            "{http://www.alfresco.org/model/site/1.0}siteVisibility": "PUBLIC", 
+            "{http://www.alfresco.org/model/system/1.0}locale": "en_US", 
+            "{http://www.alfresco.org/model/system/1.0}node-dbid": 1412954, 
+            "{http://www.alfresco.org/model/system/1.0}node-uuid": "7af4c955-d171-4a86-9e34-ef063b48f61c", 
+            "{http://www.alfresco.org/model/system/1.0}store-identifier": "SpacesStore", 
+            "{http://www.alfresco.org/model/system/1.0}store-protocol": "workspace"
+        }, 
+        "type": "{http://www.alfresco.org/model/site/1.0}site"
+    }, 
+    "node": "/alfresco/s/api/node/workspace/SpacesStore/7af4c955-d171-4a86-9e34-ef063b48f61c", 
+    "shortName": "consulting-team", 
+    "siteManagers": [
+        "dmadgic", 
+        "mperrodin", 
+        "jmachado", 
+        "jdickson", 
+        "blong", 
+        "cfinzel", 
+        "rmcknight", 
+        "mbelmekki", 
+        "nmcminn", 
+        "ddevine", 
+        "awadsworth", 
+        "thines", 
+        "alagan", 
+        "amahabir", 
+        "lcabaceira", 
+        "jwiacek"
+    ], 
+    "sitePages": [
+        {
+            "pageId": "documentlibrary"
+        }, 
+        {
+            "pageId": "wiki-page"
+        }, 
+        {
+            "pageId": "links"
+        }, 
+        {
+            "pageId": "data-lists"
+        }
+    ], 
+    "sitePreset": "site-dashboard", 
+    "tagScope": "/alfresco/s/api/tagscopes/workspace/SpacesStore/7af4c955-d171-4a86-9e34-ef063b48f61c", 
+    "title": "Alfresco Consulting", 
+    "url": "/alfresco/s/api/sites/consulting-team", 
+    "visibility": "PUBLIC"
+}

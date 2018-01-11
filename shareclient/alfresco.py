@@ -429,7 +429,7 @@ class ShareClient:
                     .execute(self.opener, DashboardPageResponse)
             except SurfRequestError, e:
                 # Try 4.0 method
-                if e.code in (404, 500):
+                if e.code in (404, 500, 502):
                     dashboardResp = ShareRequest(self.instance, 'proxy/alfresco/remoteadm/get/s/sitestore/alfresco/site-data/pages/site/%s/dashboard.xml' % (siteId)) \
                         .execute(self.opener, DashboardPageResponse)
                 else:
@@ -453,7 +453,7 @@ class ShareClient:
                     .execute(self.opener, DashboardPageResponse)
             except SurfRequestError, e:
                 # Try 4.0 method
-                if e.code in (404, 500): # 4.0.a returns 500, 4.0.b returns 404
+                if e.code in (404, 500, 502): # 4.0.a returns 500, 4.0.b returns 404
                     dashboardResp = ShareRequest(self.instance, 'proxy/alfresco/remoteadm/get/s/sitestore/alfresco/site-data/pages/%s/%s/dashboard.xml' % \
                         (urllib.quote(unicode(dashboardType)), urllib.quote(unicode(dashboardId)))) \
                         .execute(self.opener, DashboardPageResponse)
@@ -470,20 +470,20 @@ class ShareClient:
                             dashletResp = ShareRequest(self.instance, urltmpl % ('remotestore', i, j, urllib.quote(unicode(dashboardType)), urllib.quote(unicode(dashboardId)))) \
                                 .execute(self.opener, DashletResponse)
                         except SurfRequestError, e:
-                            if e.code in (404, 500):
+                            if e.code in (404, 500, 502):
                                 dashletResp = ShareRequest(self.instance, urltmpl % ('remoteadm', i, j, urllib.quote(unicode(dashboardType)), urllib.quote(unicode(dashboardId)))) \
                                     .execute(self.opener, DashletResponse)
                             else:
                                 raise e
                         dashlets.append(dashletResp.dict())
                     except SurfRequestError, e:
-                        if e.code == 404:
+                        if (e.code == 404) or (e.code==502) or (e.code == 500):
                             pass
                         else:
                             raise e
             dashboardConfig = { 'dashboardPage': '%s/%s/dashboard' % (dashboardType, dashboardId), 'templateId': templateInstance, 'dashlets': dashlets }
         except SurfRequestError, e:
-            if e.code == 404:
+            if (e.code == 404) or (e.code==502) or (e.code == 500):
                 dashboardConfig = None
             else:
                 raise e
@@ -556,7 +556,7 @@ class ShareClient:
             # For 3.4 and under
             return self.doJSONPost('proxy/alfresco/api/sites/%s/memberships/%s' % (urllib.quote(unicode(siteName)), urllib.quote(unicode(authorityName))), json.dumps(memberData), method="PUT")
         except SurfRequestError, e:
-            if (e.code == 404) or (e.code == 502):
+            if (e.code == 404) or (e.code==502) or (e.code == 500):
                 # For 4.0+
                 return self.doJSONPost('proxy/alfresco/api/sites/%s/memberships' % (urllib.quote(unicode(siteName))), json.dumps(memberData), method="PUT")
             else:
@@ -634,7 +634,7 @@ class ShareClient:
             try:
                 createData = self.doJSONPost('proxy/alfresco/api/type/%s/formprocessor' % (urllib.quote(unicode(folderType))), json.dumps(folderData))
             except SurfRequestError, e:
-                if (e.code == 404) or (e.code == 502):
+                if (e.code == 404) or (e.code==502) or (e.code == 500):
                     folderType = 'cm:folder'
                     createData = self.doJSONPost('proxy/alfresco/api/type/%s/formprocessor' % (urllib.quote(unicode(folderType))), json.dumps(folderData))
                 else:
@@ -867,7 +867,7 @@ class ShareClient:
             try:
                 createData = self.doJSONPost('proxy/alfresco/api/type/cm_folder/formprocessor', json.dumps(folderData))
             except SurfRequestError, e:
-                if e.code == 404:
+                if (e.code == 404) or (e.code==502) or (e.code == 500):
                     # 4.0 syntax
                     createData = self.doJSONPost('proxy/alfresco/api/type/%s/formprocessor' % (urllib.quote('cm:folder')), json.dumps(folderData))
                 else:
@@ -949,7 +949,7 @@ class ShareClient:
                     return item
             raise Exception('file_not_found', 'Could not find file %s in component %s, parent folder %s' % (path[path.rindex('/') + 1:], componentId, parentPath))
         except SurfRequestError, e:
-            if e.code == 404: # Pre-4.0 method
+            if (e.code == 404) or (e.code==502) or (e.code == 500): # Pre-4.0 method
                 return self.doJSONGet('proxy/alfresco/slingshot/doclib/doclist/all/node/alfresco/company/home/%s/%s/%s/%s' % (urllib2.quote(self.getSitesContainerName()), urllib2.quote(siteId), urllib2.quote(componentId), urllib2.quote(path.encode('utf-8'))))
             else:
                 raise
@@ -1191,7 +1191,7 @@ class ShareClient:
             try:
                 self.deleteUser(u['userName'])
             except SurfRequestError, e:
-                if e.code == 404:
+                if (e.code == 404) or (e.code==502) or (e.code == 500):
                     print "User '%s' did not exist, skipping" % (u['userName'])
                 else:
                     raise e
@@ -1221,7 +1221,7 @@ class ShareClient:
             group = self.doJSONGet('proxy/alfresco/api/groups/%s' % (urllib.quote(unicode(name))))
             return group
         except SurfRequestError, e:
-            if e.code == 404:
+            if (e.code == 404) or (e.code==502) or (e.code == 500):
                 return None
             else:
                 raise e
